@@ -1,0 +1,6 @@
+.*
+!/.gitignore
+*.pyc
+exiftool/
+pyexiftool/
+examplefiles/
