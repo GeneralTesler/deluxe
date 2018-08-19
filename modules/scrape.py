@@ -4,11 +4,6 @@ from bs4 import BeautifulSoup
 import urlparse
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-'''
-need to check if link domain matches supplied domain or a parent/sub domain
-need to convert URIs to URLs
-'''
-
 def scrapepage(url):
     '''given a url, return document links matching the URL's domain'''
     urls = []
