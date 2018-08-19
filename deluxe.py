@@ -5,8 +5,6 @@ import modules.extract as Extractor
 import modules.download as Downloader
 import modules.args as ArgumentHandler
 
-#TODO: print statements
-
 __author__ = '@2xxeformyshirt'
 __version__ = '1.0.0'
 
