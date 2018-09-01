@@ -1,6 +1,5 @@
 #!/bin/bash
 wd=$(pwd)
-fi
 git clone https://github.com/smarnach/pyexiftool.git
 cd pyexiftool/
 python setup.py install
