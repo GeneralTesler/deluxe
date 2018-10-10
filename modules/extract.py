@@ -37,7 +37,7 @@ class StarDoc(MinDoc):
     def prepcsv(self):
         '''remove commas from metadata properties'''
         self.creator = self.creator.encode('ascii','ignore').replace(',','') if self.creator is not None else self.creator
-        self.producer = self.creator.encode('ascii','ignore').replace(',','') if self.producer is not None else self.producer
+        self.producer = self.producer.encode('ascii','ignore').replace(',','') if self.producer is not None else self.producer
         self.author = self.author.encode('ascii','ignore').replace(',','') if self.author is not None else self.author
 
     def guessextract(self,et):
