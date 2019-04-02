@@ -49,10 +49,13 @@ def downloadlist(urls,outdir):
     dltargets = []
     
     for url in urls:
-        r = requests.head(url,headers=ua,allow_redirects=True,verify=False)
-        if str(r.status_code)[:1] != '5' and str(r.status_code)[:1] != '4':
-            dltargets.append(url)
-
+        try:
+            r = requests.head(url,headers=ua,allow_redirects=True,verify=False)
+            if str(r.status_code)[:1] != '5' and str(r.status_code)[:1] != '4':
+                dltargets.append(url)
+        except:
+            pass
+        
     #TODO: add a status bar?
     if len(dltargets) > 0:
         if not os.path.isdir(absp):
