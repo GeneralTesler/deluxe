@@ -36,9 +36,9 @@ class StarDoc(MinDoc):
 
     def prepcsv(self):
         '''remove commas from metadata properties'''
-        self.creator = self.creator.encode('ascii','ignore').replace(',','') if self.creator is not None else self.creator
-        self.producer = self.producer.encode('ascii','ignore').replace(',','') if self.producer is not None else self.producer
-        self.author = self.author.encode('ascii','ignore').replace(',','') if self.author is not None else self.author
+        self.creator = self.creator.encode('ascii','ignore').replace(',','') if self.creator is not None and type(self.creator) is not int else self.creator
+        self.producer = self.producer.encode('ascii','ignore').replace(',','') if self.producer is not None and type(self.producer) is not int else self.producer
+        self.author = self.author.encode('ascii','ignore').replace(',','') if self.author is not None and type(self.author) is not int else self.author
 
     def guessextract(self,et):
         '''try to extract metadata from an unknown office doc using both extraction methods'''
