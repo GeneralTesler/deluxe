@@ -6,7 +6,7 @@ import modules.download as Downloader
 import modules.args as ArgumentHandler
 
 __author__ = "@2xxeformyshirt"
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 
 if len(sys.argv) == 1:
     print("[-] Missing arguments...quitting!")
