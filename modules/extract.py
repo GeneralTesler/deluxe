@@ -9,6 +9,7 @@ from pdfrw import PdfReader
 # when it does, the library prints an error to the terminal
 # need to change the logging level to prevent this
 from pdfrw.errors import log, logging
+
 log.setLevel(logging.CRITICAL)
 
 
@@ -35,7 +36,7 @@ class StarDoc(MinDoc):
             if name[-1] == ")":
                 name = name[:-1]
             names_clean.add(name)
-        
+
         self.names = list(names_clean)
 
     def extract_metadata(self):
