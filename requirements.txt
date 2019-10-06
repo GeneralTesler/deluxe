@@ -1,3 +1,5 @@
 google==2.0.1
 requests
 python-magic
+olefile
+pdfrw

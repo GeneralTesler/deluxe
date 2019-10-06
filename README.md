@@ -1,20 +1,20 @@
 # Deluxe - Metadata Search and Extract
 
-Deluxe searches for PDF and Office documents for a target domain, downloads them, then extracts the authorship metadata from them. Alternatively, it can scrape a URL for document links, download them, then extract the authorship metadata from them. Extraction is performed using [PyExfiTool](https://github.com/smarnach/pyexiftool), a Python wrapper for [ExifTool](https://sno.phy.queensu.ca/~phil/exiftool/).
+Deluxe searches for PDF and Office documents for a target domain, downloads them, then extracts the authorship metadata from them. Alternatively, it can scrape a URL for document links, download them, then extract the authorship metadata from them. 
 
 After performing the initial search or scrape, the tool produces a manifest file in the output directory. This manifest contains information about each files downloaded as well as some meta information about the documents. After performing extraction, a copy of the document is made an updated with the authorship information. See the [section](#manifest-files-structure) below for structure. 
 
-Deluxe is the spiritual successor to [Metasearch](https://github.com/GeneralTesler/metasearch2), a tool I developed over a year ago when I was first learning Python.
+Deluxe is the spiritual successor to [Metasearch](https://github.com/GeneralTesler/metasearch2), a tool I developed a while ago when I was first learning Python.
 
 *Note: this is still a somewhat beta release and requires some additional testing. If you have any feedback, please open an issue.*
 
 ## Install
 
 ```
-./setup.sh
+pip install -r requirements
 ```
-- this will prompt for the root password
-- this will create two directories in the project directory, 'exiftool/' and 'pyexiftool/'
+
+*note: virtualenv recommended*
 
 ## Usage
 
@@ -55,7 +55,7 @@ optional arguments:
   -h, --help   show this help message and exit
   -m MAN       manifest file location
   -o EXTOUT    output file name
-  -p, --print  print CSV of results to terminal  
+  -p, --print  print list of results to terminal (de-duped across all files)
 ```
 
 ## Manifest Files Structure
@@ -86,11 +86,9 @@ optional arguments:
 {
   "files": [
     {
-      "author":"string",        //authorship metadata
-      "creator":"string",       //authorship metadata
       "filetype": "string",     //extension (e.g. pdf, docx)
+      "names" : list            //de-duped (per file) list of names extracted (e.g. author)
       "path": "string",         //path on disk to file
-      "producer":"string",      //authorship metadata
       "url": "string"           //url for file
     },
     ...
@@ -109,4 +107,5 @@ optional arguments:
 
 ## Changelog
 
+- 10/6/2019 - testing not using Exiftool
 - 8/18/2018 - Initial release
