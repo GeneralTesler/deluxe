@@ -31,6 +31,8 @@ class StarDoc(MinDoc):
     def conv_name_list(self):
         names_clean = set()
         for name in set(filter(None, self.names)):
+            if type(name) == bytes:
+                name = name.decode("utf-8", "ignore")
             if name[0] == "(":
                 name = name[1:]
             if name[-1] == ")":
@@ -82,10 +84,11 @@ class StarDoc(MinDoc):
         except ValueError:
             pass
         else:
-            # library doesn't throw errors if property doesnt exist
-            self.names.add(pdf.Info.Author)
-            self.names.add(pdf.Info.Creator)
-            self.names.add(pdf.Info.Producer)
+            if "/Info" in pdf.keys():
+                # library doesn't throw errors if property doesnt exist
+                self.names.add(pdf.Info.Author)
+                self.names.add(pdf.Info.Creator)
+                self.names.add(pdf.Info.Producer)
 
 
 def processmanifest(manf, ofp):
@@ -99,7 +102,7 @@ def processmanifest(manf, ofp):
         df["names"] = docu.names
     manf["meta"]["timestamp"] = int(time.time())
     with open(ofp, "w") as f:
-        f.write(json.dumps(manf, indent=4, sort_keys=True))
+        f.write(json.dumps(manf, indent=4, sort_keys=True, default=str))
     return manf
 
 
